@@ -69,7 +69,7 @@ RUN echo "BUILDING rocBLAS with ARCH: ${ROCM_ARCH} and JOBS: ${MAX_JOBS}" && \
 
 ######
 # If you trust my WHL-Files i uploaded at github and you are able to transfer th WHL-Files into this Docker-Image!? Then comment out the following lines to the next ######
-######
+##
 # git clone PyTorch Version you need for
 ### PyTorch Version
 
