@@ -58,7 +58,7 @@ RUN apt-get -y update && \
     true
 
 RUN echo "Checkout ROCBLAS " && \
-    git clone https://github.com/ROCm/rocBLAS.git /rocblas && \
+    git clone https://github.com/ROCm/rocBLAS.git -b 'rocm-6.2.0' /rocblas && \
     true
 
 WORKDIR /rocblas
