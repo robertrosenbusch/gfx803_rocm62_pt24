@@ -57,8 +57,11 @@ RUN apt-get -y update && \
     pip install cmake mkl mkl-include && \ 
     true
 
+
+ENV ROCBLAS_GIT_VERSION="rocm-6.2.0"
+#ENV PYTORCH_GIT_VERSION="nightly"
 RUN echo "Checkout ROCBLAS " && \
-    git clone https://github.com/ROCm/rocBLAS.git -b 'rocm-6.2.0' /rocblas && \
+    git clone https://github.com/ROCm/rocBLAS.git -b ${ROCBLAS_GIT_VERSION} /rocblas && \
     true
 
 WORKDIR /rocblas
