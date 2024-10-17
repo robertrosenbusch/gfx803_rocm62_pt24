@@ -1,7 +1,8 @@
 # Docker Buildfile for ROCm 6.2 to use ComfyUI with a RX570 / Polaris AMD GPU
 # build and compiled by Robert Rosenbusch at August 2024
 
-FROM rocm/pytorch:rocm6.2_ubuntu22.04_py3.10_pytorch_release_2.3.0
+#FROM rocm/pytorch:rocm6.2_ubuntu22.04_py3.10_pytorch_release_2.3.0
+FROM rocm/pytorch:rocm6.2.3_ubuntu22.04_py3.10_pytorch_release_2.3.0
 
 ENV PORT=8188 \
     COMMANDLINE_ARGS='' \
@@ -52,13 +53,15 @@ RUN export MAX_JOBS=${MAX_JOBS} && \
 
 # Update System and install ffmpeg for SDXL video and python virtual Env
 RUN apt-get -y update && \
+    apt-get -y upgrade && \
     apt-get install -y --no-install-recommends ffmpeg virtualenv google-perftools ccache tmux mc pigz plocate && \
     pip install --upgrade pip wheel && \
     pip install cmake mkl mkl-include && \ 
+    apt --fix-broken install -y && \
     true
 
 
-ENV ROCBLAS_GIT_VERSION="rocm-6.2.0"
+ENV ROCBLAS_GIT_VERSION="rocm-6.2.2"
 #ENV PYTORCH_GIT_VERSION="nightly"
 RUN echo "Checkout ROCBLAS " && \
     git clone https://github.com/ROCm/rocBLAS.git -b ${ROCBLAS_GIT_VERSION} /rocblas && \
