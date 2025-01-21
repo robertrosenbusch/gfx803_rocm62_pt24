@@ -101,6 +101,8 @@ RUN python setup.py clean && \
      pip install -r ${REQS_FILE} && \
      true
 
+RUN ln -s /opt/rocm/aotriton/lib/libaotriton_v2.so /opt/rocm/aotriton/lib/libaotriton_v2.a
+
 RUN python3 tools/amd_build/build_amd.py && \
      true
 
